@@ -75,7 +75,9 @@ app.delete("/api/orders/:id", (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`🚀 API rodando em http://localhost:${PORT}`);
+  console.log(`🚀 API rodando em http://lo
+    
+    calhost:${PORT}`);
   console.log(`📋 Endpoints disponíveis:`);
   console.log(`   GET    /api/orders`);
   console.log(`   POST   /api/orders`);
