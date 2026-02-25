@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import type { ColunmProps } from ".";
 
-const ColunmStyled = styled.div<ColunmProps>`
+export const ColunmStyled = styled.div<ColunmProps>`
   background-color: ${(props) => props.color};
   height: 90%;
   width: 30%;
@@ -16,11 +16,19 @@ const ColunmStyled = styled.div<ColunmProps>`
     font-size: 18px;
     color: #f2e9c3ff;
   }
-  p {
-    font-weight: 400;
-    font-size: 16px;
-    color: #f2e9c3ff;
-  }
 `;
 
-export default ColunmStyled;
+export const ListStyled = styled.div`
+  display: flex;
+  width: 90%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  p {
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.5rem;
+  }
+`;

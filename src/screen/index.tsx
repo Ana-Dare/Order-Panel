@@ -1,4 +1,5 @@
 import Colunm from "../components/colunm";
+import { ListStyled } from "../components/colunm/Colunm.styled";
 import InputField from "../components/InputField";
 import SideBar from "../components/sidebar";
 import useListOrder from "../hooks/useListOrder";
@@ -24,9 +25,11 @@ const Screen = () => {
       >
         <Colunm color="#f18651e7" title="Novos">
           <h1>NOVOS</h1>
-          {data?.new.map((order) => (
-            <li key={order.id}>{order.description}</li>
-          ))}
+          <ListStyled>
+            {data?.new.map((order) => (
+              <li key={order.id}>{order.description}</li>
+            ))}
+          </ListStyled>
         </Colunm>
         <Colunm color="#af5d34e7" title="Novos">
           <h1>PREPARANDO</h1>
