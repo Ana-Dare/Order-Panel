@@ -8,8 +8,6 @@ export function useCreateOrder() {
     onSuccess: (data) => {
       console.log("Pedido criado", data);
       queryClient.invalidateQueries();
-      //chamar a query client.invalidateQueries()
-      //para atualizar a lista na tela
     },
     onError: (error) => {
       console.error("Erro ao criar pedido", error);

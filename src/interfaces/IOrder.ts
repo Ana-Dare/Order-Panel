@@ -1,4 +1,4 @@
-export type OrderState = "new" | "preparing" | "finished";
+export type OrderState = "novo" | "preparando" | "finalizado";
 
 export interface IOrder {
   id: string; //id do pedido
@@ -8,5 +8,5 @@ export interface IOrder {
 }
 
 export interface ICreateOrder {
-  description: string
+  description: string;
 }

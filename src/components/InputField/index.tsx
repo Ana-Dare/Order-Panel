@@ -12,7 +12,6 @@ const InputField = () => {
   const handleCreate = () => {
     mutation.mutate({ description: term });
     console.log("Pedido criado", term);
-    console.log(import.meta.env.VITE_API_URL);
   };
 
   return (

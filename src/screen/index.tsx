@@ -1,8 +1,12 @@
 import Colunm from "../components/colunm";
 import InputField from "../components/InputField";
 import SideBar from "../components/sidebar";
+import useListOrder from "../hooks/useListOrder";
 
 const Screen = () => {
+  const { data, isLoading, error } = useListOrder();
+  console.log(data?.new);
+
   return (
     <>
       <SideBar />
@@ -20,6 +24,9 @@ const Screen = () => {
       >
         <Colunm color="#f18651e7" title="Novos">
           <h1>NOVOS</h1>
+          {data?.new.map((order) => (
+            <li key={order.id}>{order.description}</li>
+          ))}
         </Colunm>
         <Colunm color="#af5d34e7" title="Novos">
           <h1>PREPARANDO</h1>
