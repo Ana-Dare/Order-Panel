@@ -1,5 +1,5 @@
 import React from "react";
-import ColunmStyled from "./Colunm.styled";
+import { ColunmStyled } from "./Colunm.styled";
 
 export interface ColunmProps {
   children: React.ReactNode;

@@ -11,7 +11,14 @@ const InputField = () => {
 
   const handleCreate = () => {
     mutation.mutate({ description: term });
+    setTerm("");
     console.log("Pedido criado", term);
+  };
+
+  const handleKeyboard = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleCreate();
+    }
   };
 
   return (
@@ -20,8 +27,9 @@ const InputField = () => {
         placeholder="Qual o seu pedido?"
         value={term}
         onChange={(e) => setTerm(e.target.value)}
+        onKeyDown={handleKeyboard}
       />
-      <SendButton onClick={handleCreate}>
+      <SendButton onClick={handleCreate} type="submit">
         <img src="/public/send.png" alt="enviar" width={36} height={36} />
       </SendButton>
     </InputFieldStyled>
