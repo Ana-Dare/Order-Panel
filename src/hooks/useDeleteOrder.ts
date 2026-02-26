@@ -17,5 +17,3 @@ export function useDeleteOrder() {
     mutation,
   };
 }
-
-export default useDeleteOrder;

@@ -37,6 +37,7 @@ body {
     flex-direction:column;
 	overflow: hidden;
     width: 100vw;
+	font-family: 'Times New Roman', Times, serif;
 }
 html {
    height:100%;

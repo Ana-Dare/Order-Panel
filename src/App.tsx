@@ -1,6 +1,6 @@
 //app renderiza tudo
 import { GlobalStyle } from "./style/reset";
-import Screen from "./screen";
+import Home from "./screen/home";
 import { OrderProvider } from "./context/OrderContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -12,7 +12,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <OrderProvider>
           <GlobalStyle />
-          <Screen />
+          <Home />
         </OrderProvider>
       </QueryClientProvider>
     </>
