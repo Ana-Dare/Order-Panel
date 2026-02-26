@@ -7,11 +7,17 @@ import {
 } from "../components/colunm/Colunm.styled";
 import InputField from "../components/InputField";
 import SideBar from "../components/sidebar";
+import useDeleteOrder from "../hooks/useDeleteOrder";
 import useListOrder from "../hooks/useListOrder";
+import { deleteOrder } from "../services/deleteOrder";
 
 const Screen = () => {
   const { data, isLoading, error } = useListOrder();
-  console.log(data?.new);
+  const { mutation: deleteMutation } = useDeleteOrder();
+
+  const handleDelete = (id: string) => {
+    deleteMutation.mutate(id);
+  };
 
   return (
     <>
@@ -36,7 +42,7 @@ const Screen = () => {
                 <OrderStyled>
                   <p> {order.description}</p>
                   <ButtonWrapper>
-                    <ButtonStyled>
+                    <ButtonStyled onClick={() => handleDelete(order.id)}>
                       <img
                         src="/cancel.png"
                         alt="cancelar"
