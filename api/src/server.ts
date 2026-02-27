@@ -43,11 +43,9 @@ io.on("connection", (socket) => {
 // GET /api/orders - List all orders
 app.get("/api/orders", (req, res) => {
   const orders = store.getAll();
-  // NÃO emitir evento aqui - GET não modifica dados
   res.status(200).json(orders);
 });
 
-// Start server - usar PORT para ambos Express e Socket.IO
 server.listen(PORT, () => {
   console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
   console.log(`📋 Endpoints disponíveis:`);
