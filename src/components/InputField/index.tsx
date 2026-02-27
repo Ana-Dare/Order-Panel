@@ -1,3 +1,4 @@
+import { io } from "socket.io-client";
 import { useOrderContext } from "../../context/OrderContext";
 import useCreateOrder from "../../hooks/useCreateOrder";
 import { InputFieldStyled, SendButton } from "./InputField.styled";
@@ -12,7 +13,6 @@ const InputField = () => {
   const handleCreate = () => {
     mutation.mutate({ description: term });
     setTerm("");
-    console.log("Pedido criado", term);
   };
 
   const handleKeyboard = (e: React.KeyboardEvent<HTMLInputElement>) => {

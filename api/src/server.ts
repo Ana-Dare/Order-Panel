@@ -1,38 +1,71 @@
 import express from "express";
-import cors from "cors";
 import { OrderStore } from "./store.js";
 import type { OrderState } from "./types.js";
+import http from "http";
+import cors from "cors"; // Adicionar import
+import { Server } from "socket.io";
+
+//Colocar em todos os métods um aviso que algo mudou
 
 const app = express();
 const store = new OrderStore();
+const server = http.createServer(app);
 const PORT = 3000;
 
-// Middleware
+// Middleware - ADICIONAR ESTAS LINHAS
 app.use(
   cors({
     origin: "http://localhost:5173",
     methods: ["GET", "POST", "PATCH", "DELETE"],
-    allowedHeaders: ["Content-Type"],
   }),
 );
 app.use(express.json());
 
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PATCH", "DELETE"],
+  },
+});
+
+io.on("connection", (socket) => {
+  console.log(`Novo cliente conectado: ${socket.id}`);
+
+  socket.on("edit_order", (data) => {
+    socket.emit("update_order", data);
+  });
+
+  socket.on("disconnect", () => {
+    console.log(`Cliente desconectado: ${socket.id}`);
+  });
+});
+
 // GET /api/orders - List all orders
 app.get("/api/orders", (req, res) => {
   const orders = store.getAll();
+  // NÃO emitir evento aqui - GET não modifica dados
   res.status(200).json(orders);
+});
+
+// Start server - usar PORT para ambos Express e Socket.IO
+server.listen(PORT, () => {
+  console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
+  console.log(`📋 Endpoints disponíveis:`);
+  console.log(`   GET    /api/orders`);
+  console.log(`   POST   /api/orders`);
+  console.log(`   PATCH  /api/orders/:id`);
+  console.log(`   DELETE /api/orders/:id`);
 });
 
 // POST /api/orders - Create new order
 app.post("/api/orders", (req, res) => {
   try {
     const { description } = req.body;
-
     if (!description) {
       return res.status(400).json({ error: "Description is required" });
     }
-
     const order = store.create(description);
+    io.emit("update_orders");
     res.status(201).json(order);
   } catch (error) {
     res.status(400).json({ error: (error as Error).message });
@@ -54,7 +87,7 @@ app.patch("/api/orders/:id", (req, res) => {
     if (!order) {
       return res.status(404).json({ error: "Order not found" });
     }
-
+    io.emit("update_orders");
     res.status(200).json(order);
   } catch (error) {
     res.status(400).json({ error: (error as Error).message });
@@ -69,18 +102,6 @@ app.delete("/api/orders/:id", (req, res) => {
   if (!deleted) {
     return res.status(404).json({ error: "Order not found" });
   }
-
+  io.emit("update_orders");
   res.status(204).send();
-});
-
-// Start server
-app.listen(PORT, () => {
-  console.log(`🚀 API rodando em http://lo
-    
-    calhost:${PORT}`);
-  console.log(`📋 Endpoints disponíveis:`);
-  console.log(`   GET    /api/orders`);
-  console.log(`   POST   /api/orders`);
-  console.log(`   PATCH  /api/orders/:id`);
-  console.log(`   DELETE /api/orders/:id`);
 });
