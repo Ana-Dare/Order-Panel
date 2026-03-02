@@ -7,13 +7,11 @@ export const InputFieldStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  align-items: center;
   align-self: center;
   border: 2px solid #ffa54cff;
   border-radius: 999px;
   padding: 0px 0 0 12px;
   box-sizing: border-box;
-
   &:focus-within {
     border-color: rgba(255, 165, 76, 0.79);
     box-shadow: 0 0 0 2px rgba(255, 162, 70, 0.79);
@@ -33,6 +31,7 @@ export const InputFieldStyled = styled.div`
     border: none;
   }
   input::placeholder {
+    color: #000;
   }
 `;
 
