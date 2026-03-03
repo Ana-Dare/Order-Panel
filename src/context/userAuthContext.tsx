@@ -7,8 +7,6 @@ interface IUserAuthContext {
   setPassword: (t: string) => void;
   isRegistered: boolean;
   setIsRegistered: (t: boolean) => void;
-  //   loading: boolean;
-  //   setLoading: (t: boolean) => void;
 }
 
 const UserAuthContext = createContext<IUserAuthContext | null>(null);
@@ -21,7 +19,6 @@ export const UserAuthProvider = ({
   const [user, setUser] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isRegistered, setIsRegistered] = useState<boolean>(false);
-  //const [loading, setLoading] = useState(true);
 
   return (
     <UserAuthContext.Provider
@@ -32,8 +29,6 @@ export const UserAuthProvider = ({
         setPassword,
         isRegistered,
         setIsRegistered,
-        // loading,
-        // setLoading,
       }}
     >
       {children}

@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { useUserAuthContext } from "../../context/userAuthContext";
-import { FormStyled, InputFormStyled, WrapperButtonForm } from "./Form.styled";
+import {
+  LinkButtonSTyled,
+  FormStyled,
+  InputFormStyled,
+  WrapperButtonForm,
+  AuthButtonStyled,
+} from "./Form.styled";
 import { handleLogin, handleRegister } from "../../services/userAuth";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +19,9 @@ const Form = () => {
   const [isLogin, setIsLogin] = useState(true);
   const { user, setUser, password, setPassword, setIsRegistered } =
     useUserAuthContext();
+
   const navigate = useNavigate();
+
   const loginUser = () => {
     const success = handleLogin({ user, password });
     if (success) {
@@ -25,8 +33,9 @@ const Form = () => {
     <>
       {isLogin ? (
         <FormStyled>
-          <p>Conecte-se</p>
+          <img src="/cook.png" alt="cozinheiro" width={100} height={100} />
           <InputFormStyled>
+            <img src="/user.svg" alt="user" />
             <input
               type="text"
               placeholder="Digite seu nome de usuário"
@@ -35,6 +44,7 @@ const Form = () => {
             />
           </InputFormStyled>
           <InputFormStyled>
+            <img src="/lock.svg" alt="user" />
             <input
               type="text"
               placeholder="Digite sua senha"
@@ -43,16 +53,17 @@ const Form = () => {
             />
           </InputFormStyled>
           <WrapperButtonForm>
-            <button onClick={loginUser}>Entrar</button>
-            <button onClick={() => setIsLogin(false)}>
+            <AuthButtonStyled onClick={loginUser}>ENTRAR</AuthButtonStyled>
+            <LinkButtonSTyled onClick={() => setIsLogin(false)}>
               Não é cadastrado? Registre-se
-            </button>
+            </LinkButtonSTyled>
           </WrapperButtonForm>
         </FormStyled>
       ) : (
         <FormStyled>
-          <p>Cadastre-se-se</p>
+          <img src="/cook.png" alt="cozinheiro" width={100} height={100} />
           <InputFormStyled>
+            <img src="/user.svg" alt="user" />
             <input
               type="text"
               placeholder="Digite seu nome de usuário"
@@ -61,6 +72,7 @@ const Form = () => {
             />
           </InputFormStyled>
           <InputFormStyled>
+            <img src="/lock.svg" alt="user" />
             <input
               type="text"
               placeholder="Digite sua senha"
@@ -69,12 +81,14 @@ const Form = () => {
             />
           </InputFormStyled>
           <WrapperButtonForm>
-            <button onClick={() => handleRegister({ user, password })}>
-              Cadastrar
-            </button>
-            <button onClick={() => setIsLogin(true)}>
+            <AuthButtonStyled
+              onClick={() => handleRegister({ user, password })}
+            >
+              CADASTRAR
+            </AuthButtonStyled>
+            <LinkButtonSTyled onClick={() => setIsLogin(true)}>
               Já é cadastrado? Entre aqui
-            </button>
+            </LinkButtonSTyled>
           </WrapperButtonForm>
         </FormStyled>
       )}
