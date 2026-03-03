@@ -16,10 +16,10 @@ const Modal = ({ onCancel, onDelete, orderId }: IModal) => {
       <p>Deseja excluir o pedido?</p>
       <ModalWrapper>
         <ModalButtonStyled onClick={onCancel} $variant="cancel">
-          Cancelar
+          Não
         </ModalButtonStyled>
         <ModalButtonStyled onClick={() => onDelete(orderId)} $variant="confirm">
-          Confirmar
+          Sim
         </ModalButtonStyled>
       </ModalWrapper>
     </ModalStyled>

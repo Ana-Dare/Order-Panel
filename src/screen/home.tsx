@@ -50,7 +50,7 @@ const Home = () => {
           gap: "1rem",
         }}
       >
-        <Colunm color="#f18651e7" title="Novos">
+        <Colunm color="#EB5E28" title="">
           <h1>NOVOS</h1>
           <ListStyled>
             {data?.new.map((order) => (
@@ -67,8 +67,8 @@ const Home = () => {
                       <img
                         src="/cancel.png"
                         alt="cancelar"
-                        width={24}
-                        height={24}
+                        width={30}
+                        height={30}
                       />
                     </ButtonStyled>
                     <ButtonStyled
@@ -77,8 +77,8 @@ const Home = () => {
                       <img
                         src="/arrow.png"
                         alt="próximo"
-                        width={24}
-                        height={24}
+                        width={30}
+                        height={30}
                       />
                     </ButtonStyled>
                   </ButtonWrapper>
@@ -87,7 +87,7 @@ const Home = () => {
             ))}
           </ListStyled>
         </Colunm>
-        <Colunm color="#af5d34e7" title="Novos">
+        <Colunm color="#F27F34" title="">
           <h1>PREPARANDO</h1>
           <ListStyled>
             {data?.preparing.map((order) => (
@@ -99,10 +99,10 @@ const Home = () => {
                       onClick={() => handleUpdate(order.id, "finalizado")}
                     >
                       <img
-                        src="/arrow.png"
+                        src="/arrow2.png"
                         alt="próximo"
-                        width={24}
-                        height={24}
+                        width={30}
+                        height={30}
                       />
                     </ButtonStyled>
                   </ButtonWrapper>
@@ -111,7 +111,7 @@ const Home = () => {
             ))}
           </ListStyled>
         </Colunm>
-        <Colunm color="#dc6022e7" title="Novos">
+        <Colunm color="#F9A03F" title="">
           <h1>FINALIZADO</h1>
           <ListStyled>
             {data?.finished.map((order) => (

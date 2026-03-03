@@ -2,17 +2,19 @@ import styled from "styled-components";
 import type { ColunmProps } from ".";
 
 export const ColunmStyled = styled.div<ColunmProps>`
-  background-color: ${(props) => props.color};
+  border: 5px solid;
+  border-color: ${(props) => props.color};
+  background-color: #fff;
   height: 90%;
   width: 30%;
   display: flex;
   flex-direction: column;
   padding: 1.5rem, 1rem;
-  color: #f0ece1;
-  border-radius: 6px;
+  border-radius: 24px;
   justify-content: center;
   padding: 1rem 4rem;
-
+  font-family: "Montserrat", sans-serif;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   h1 {
     font-weight: 800;
     font-size: 1.8rem;
@@ -21,6 +23,7 @@ export const ColunmStyled = styled.div<ColunmProps>`
     justify-content: center;
     width: 100%;
     display: flex;
+    color: ${(props) => props.color};
   }
 `;
 
@@ -40,6 +43,8 @@ export const ListStyled = styled.div`
   p {
     display: flex;
     flex: 2;
+    color: #3c3939fa;
+    line-height: 30px;
   }
 `;
 

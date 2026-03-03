@@ -31,6 +31,10 @@ export const handleRegister = ({ user, password }: IUser) => {
     console.log("Esse usuário já esta cadastrado");
     return false;
   }
+  if (user === "" || password === "") {
+    console.log("Algum campo está vazio");
+    return false;
+  }
   users?.push(newUser);
   localStorage.setItem("users", JSON.stringify(users));
   console.log("Usuário salvo na Storage");

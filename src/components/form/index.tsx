@@ -20,13 +20,21 @@ const Form = () => {
   const { user, setUser, password, setPassword, setIsRegistered } =
     useUserAuthContext();
 
-  const navigate = useNavigate();
-
   const loginUser = () => {
     const success = handleLogin({ user, password });
     if (success) {
       setIsRegistered(true);
-      navigate("/dashboard");
+    }
+  };
+
+  const registerUser = () => {
+    if (user === "" && password === "") {
+    }
+    const sucess = handleRegister({ user, password });
+    if (sucess) {
+      setUser("");
+      setPassword("");
+      setIsLogin(true);
     }
   };
   return (
@@ -46,6 +54,7 @@ const Form = () => {
           <InputFormStyled>
             <img src="/lock.svg" alt="user" />
             <input
+              required
               type="text"
               placeholder="Digite sua senha"
               value={password}
@@ -74,6 +83,7 @@ const Form = () => {
           <InputFormStyled>
             <img src="/lock.svg" alt="user" />
             <input
+              required
               type="text"
               placeholder="Digite sua senha"
               value={password}
@@ -81,9 +91,7 @@ const Form = () => {
             />
           </InputFormStyled>
           <WrapperButtonForm>
-            <AuthButtonStyled
-              onClick={() => handleRegister({ user, password })}
-            >
+            <AuthButtonStyled onClick={registerUser}>
               CADASTRAR
             </AuthButtonStyled>
             <LinkButtonSTyled onClick={() => setIsLogin(true)}>

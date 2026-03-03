@@ -4,7 +4,7 @@ const SideBarStyled = styled.div`
   width: 100%;
   padding: 1rem;
   height: 2rem;
-  background-color: #e99a69ff;
+  background-color: #f27f34;
   color: #fff;
   display: flex;
   align-items: center;

@@ -8,21 +8,24 @@ export const InputFieldStyled = styled.div`
   align-items: center;
   justify-content: center;
   align-self: center;
-  border: 2px solid #ffa54cff;
+  border: 3px solid #f27f34;
   border-radius: 999px;
   padding: 0px 0 0 12px;
   box-sizing: border-box;
   &:focus-within {
-    border-color: rgba(255, 165, 76, 0.79);
+    border-color: rgba(235, 94, 40);
     box-shadow: 0 0 0 2px rgba(255, 162, 70, 0.79);
   }
   input {
     flex: 12;
     border: none;
     outline: none;
-    font-size: 16px;
+    font-size: 18px;
     padding: 8px 0;
     background: transparent;
+    font-family: Montserrat;
+    color: #2f2f2fff;
+    font-weight: 500;
   }
   input:focus {
     border: 1px;
@@ -31,7 +34,7 @@ export const InputFieldStyled = styled.div`
     border: none;
   }
   input::placeholder {
-    color: #000;
+    color: #2f2f2fff;
   }
 `;
 
