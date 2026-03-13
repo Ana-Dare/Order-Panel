@@ -15,22 +15,36 @@ import { useNavigate } from "react-router-dom";
 //se ele for false mostrar os dados de registro no form
 //ao clicar no link para alternar para cadastro, tornar falso o estado
 
+//mostrar toast de cadastro bem sucedido
+//definir tempo para ele ficar na tela
+
 const Form = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const [isPassword, setIsPassword] = useState(true);
   const { user, setUser, password, setPassword, setIsRegistered } =
     useUserAuthContext();
+
+  const handlePassword = () => {
+    setIsPassword((prev) => !prev);
+  };
+
+  const navigate = useNavigate();
 
   const loginUser = () => {
     const success = handleLogin({ user, password });
     if (success) {
       setIsRegistered(true);
+      navigate("/dashboard");
     }
   };
 
   const registerUser = () => {
-    if (user === "" && password === "") {
-    }
-    const sucess = handleRegister({ user, password });
+    let formattedUser = user.trim();
+    let formattedPassword = password.trim();
+    const sucess = handleRegister({
+      user: formattedUser,
+      password: formattedPassword,
+    });
     if (sucess) {
       setUser("");
       setPassword("");
@@ -40,11 +54,12 @@ const Form = () => {
   return (
     <>
       {isLogin ? (
-        <FormStyled>
+        <FormStyled onSubmit={(e) => e.preventDefault()}>
           <img src="/cook.png" alt="cozinheiro" width={100} height={100} />
           <InputFormStyled>
             <img src="/user.svg" alt="user" />
             <input
+              autoComplete="username"
               type="text"
               placeholder="Digite seu nome de usuário"
               value={user}
@@ -54,16 +69,36 @@ const Form = () => {
           <InputFormStyled>
             <img src="/lock.svg" alt="user" />
             <input
-              required
-              type="text"
+              type={isPassword ? "password" : "text"}
+              autoComplete="current-password"
               placeholder="Digite sua senha"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            {isPassword ? (
+              <img
+                onClick={handlePassword}
+                src="/invisible.png"
+                alt="invisivel"
+                width={20}
+                height={20}
+              />
+            ) : (
+              <img
+                onClick={handlePassword}
+                src="/visivel.png"
+                alt="visivel"
+                width={20}
+                height={20}
+              />
+            )}
           </InputFormStyled>
           <WrapperButtonForm>
             <AuthButtonStyled onClick={loginUser}>ENTRAR</AuthButtonStyled>
-            <LinkButtonSTyled onClick={() => setIsLogin(false)}>
+            <LinkButtonSTyled
+              onClick={() => setIsLogin((prev) => !prev)}
+              type="button"
+            >
               Não é cadastrado? Registre-se
             </LinkButtonSTyled>
           </WrapperButtonForm>
@@ -74,6 +109,7 @@ const Form = () => {
           <InputFormStyled>
             <img src="/user.svg" alt="user" />
             <input
+              autoComplete="username"
               type="text"
               placeholder="Digite seu nome de usuário"
               value={user}
@@ -83,18 +119,38 @@ const Form = () => {
           <InputFormStyled>
             <img src="/lock.svg" alt="user" />
             <input
-              required
-              type="text"
+              type={isPassword ? "password" : "text"}
+              autoComplete="new-password"
               placeholder="Digite sua senha"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            {isPassword ? (
+              <img
+                onClick={handlePassword}
+                src="/invisible.png"
+                alt="invisivel"
+                width={20}
+                height={20}
+              />
+            ) : (
+              <img
+                onClick={handlePassword}
+                src="/visivel.png"
+                alt="visivel"
+                width={20}
+                height={20}
+              />
+            )}
           </InputFormStyled>
           <WrapperButtonForm>
             <AuthButtonStyled onClick={registerUser}>
               CADASTRAR
             </AuthButtonStyled>
-            <LinkButtonSTyled onClick={() => setIsLogin(true)}>
+            <LinkButtonSTyled
+              onClick={() => setIsLogin((prev) => !prev)}
+              type="button"
+            >
               Já é cadastrado? Entre aqui
             </LinkButtonSTyled>
           </WrapperButtonForm>

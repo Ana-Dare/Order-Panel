@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FormStyled = styled.div`
+export const FormStyled = styled.form`
   width: 100%;
   max-width: 330px;
   height: 100%;
@@ -25,7 +25,7 @@ export const InputFormStyled = styled.div`
   gap: 19px;
   border: 1px solid #ffffff;
   border-radius: 8px;
-  padding: 0 0 0 12px;
+  padding: 0 12px;
   box-sizing: border-box;
   &:focus-within {
     border-color: rgba(250, 250, 250, 0.82);

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Colunm from "../components/colunm";
 import {
   ButtonStyled,
@@ -14,6 +14,8 @@ import { useUpdateOrder } from "../hooks/useUpdateOrder";
 import type { IOrderState } from "../interfaces/IOrder";
 import { OverlayStyled } from "../components/modal/Modal.styled";
 import Modal from "../components/modal";
+import { ToastStyled } from "../components/toast/Toast.styled";
+import { socket } from "../socket";
 
 const Home = () => {
   const { data, isLoading, error } = useListOrder();
@@ -22,6 +24,22 @@ const Home = () => {
 
   const [isOpenModal, setOpenModal] = useState(false);
   const [selectOrderId, setSelectOrderId] = useState<string | null>(null);
+  const [isToast, setIsToast] = useState(true);
+
+  // useEffect(() => {
+  //   socket.on("user_connected", () => {
+  //     setIsToast(true);
+  //   });
+  //   const timer = setTimeout(() => {
+  //     setIsToast(false);
+  //   }, 3000);
+  //   return () => {
+  //     clearTimeout(timer);
+  //   };
+  //   return () => {
+  //     socket.off("user_connected");
+  //   };
+  // }, []);
 
   const closeModal = () => setOpenModal(false);
 
@@ -50,6 +68,9 @@ const Home = () => {
           gap: "1rem",
         }}
       >
+        {/* <ToastStyled hidden={isToast}>
+          <p>Novo usuário conectado</p>
+        </ToastStyled> */}
         <Colunm color="#EB5E28" title="">
           <h1>NOVOS</h1>
           <ListStyled>

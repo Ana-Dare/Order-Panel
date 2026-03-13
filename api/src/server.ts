@@ -31,13 +31,7 @@ const io = new Server(server, {
 io.on("connection", (socket) => {
   console.log(`Novo cliente conectado: ${socket.id}`);
 
-  socket.on("edit_order", (data) => {
-    socket.emit("update_order", data);
-  });
-
-  socket.on("disconnect", () => {
-    console.log(`Cliente desconectado: ${socket.id}`);
-  });
+  socket.broadcast.emit("user_connected");
 });
 
 // GET /api/orders - List all orders
